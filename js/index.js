@@ -5,11 +5,11 @@ $(function(){
     choseCS();
 });
 
-var colorClass = ["red","blue","green"];
+var colorClass = ["red","blue","green","gray","orange","yellow","violet"];
 var n = 1,i = 0;
 function choseCS(){
     n = parseInt(Math.random()*36 + 30);
-    var colorN = parseInt(Math.random() * 3, 10);
+    var colorN = parseInt(Math.random() * 7, 10);
     for(;i<n;i++) {
         setTimeout(function () {
             var row = parseInt(Math.random() * 20, 10) + 1;
@@ -17,7 +17,7 @@ function choseCS(){
             var colorNO = parseInt(Math.random() * 5, 10) + 1;
             var cclassName = colorClass[colorN] + colorNO;
             changeColor(row, col, cclassName);
-        },i*100);
+        },i*60);
 
     }
 

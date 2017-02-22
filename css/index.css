@@ -4,10 +4,15 @@ body,html{
     margin:0;
     overflow: hidden;
 }
-.backContainer{
-    position: absolute;
+.container{
     width:100%;
     height:100%;
+}
+.backContainer{
+    position: fixed;
+    width:100%;
+    height:100%;
+    z-index: 1;
 
     background-color: transparent;
 }
@@ -23,4 +28,31 @@ body,html{
 }
 .row{
     overflow: hidden;
+    -ms-filter: blur(3px);
+    filter: blur(3px);
+}
+
+.frontContainer{
+    position: relative;
+    z-index: 9;
+    width:100%;
+    height:100%;
+
+
+    background: rgba(0,0,0,0.3);
+}
+.contentContainer{
+    width:50%;
+    margin:0 auto;
+    text-align: center;
+
+    position: relative;
+    top:40%;
+
+}
+.frontContainer .contentContainer p{
+    color: #fff;
+    display: inline;
+    font-size:60px;
+    font-weight: 900;
 }
