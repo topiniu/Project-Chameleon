@@ -43,13 +43,22 @@ body,html{
 }
 .contentContainer{
     width:50%;
-    margin:0 auto;
+    height:100%;
     text-align: center;
 
-    position: relative;
-    top:40%;
+    position: absolute;
+    /*top:40%;*/
 
 }
+.item1{
+    left:50%;
+    margin-left:-25%;
+}
+.item2{
+    left:150%;
+
+}
+
 .frontContainer .contentContainer p{
     color: #fff;
     display: inline;
