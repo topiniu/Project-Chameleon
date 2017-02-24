@@ -1,6 +1,3 @@
-.trans{
-    background-color: transparent !important;
-}
 
 
 .red1{
@@ -116,4 +113,8 @@
 }
 .gray5{
     background-color: #8A8A8A;
+}
+
+.trans{
+    background-color: transparent;
 }

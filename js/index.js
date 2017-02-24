@@ -3,13 +3,16 @@
  */
 $(function(){
     choseCS();
-    $('#fullpage').fullpage();
+    $('#fullpage').fullpage({
+        onLeave: choseCS
+    });
 });
 
 var colorClass = ["red","blue","green","gray","orange","yellow","violet"];
 var n = 1,i = 0;
 var row,col,colorNO,cclassName,colorN;
 function choseCS(){
+    $('.colorScreen').addClass('trans');
     n = parseInt(Math.random()*36 + 30);
     colorN = parseInt(Math.random() * 7, 10);
     for(;i<n;i++) {
@@ -25,5 +28,7 @@ function choseCS(){
 
 }
 function changeColor(row,col,cclassName){
-    $(".row:nth-child(" + row + ")>.colorScreen:nth-child(" + col + ")").addClass(cclassName);
+    var p = $(".row:nth-child(" + row + ")>.colorScreen:nth-child(" + col + ")");
+    p.removeClass('trans');
+    p.addClass(cclassName);
 }
