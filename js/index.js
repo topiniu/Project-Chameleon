@@ -1,34 +1,60 @@
 /**
  * Created by topiniu on 2017/2/21.
  */
-$(function(){
-    choseCS();
-    $('#fullpage').fullpage({
-        onLeave: choseCS
-    });
-});
 
 var colorClass = ["red","blue","green","gray","orange","yellow","violet"];
-var n = 1,i = 0;
-var row,col,colorNO,cclassName,colorN;
+var coloredDiv = new Array();
 function choseCS(){
-    $('.colorScreen').addClass('trans');
+    var n = 1,i = 0;
+    var row,col,colorNO,cclassName,colorN;
+    coloredDiv = new Array();
     n = parseInt(Math.random()*36 + 30);
     colorN = parseInt(Math.random() * 7, 10);
     for(;i<n;i++) {
-        setTimeout(function () {
-            row = parseInt(Math.random() * 20, 10) + 1;
-            col = parseInt(Math.random() * 10, 10) + 1;
-            colorNO = parseInt(Math.random() * 5, 10) + 1;
-            cclassName = colorClass[colorN] + colorNO;
-            changeColor(row, col, cclassName);
-        },i*120);
+        row = parseInt(Math.random() * 20, 10) + 1;
+        col = parseInt(Math.random() * 10, 10) + 1;
+        colorNO = parseInt(Math.random() * 5, 10) + 1;
+        cclassName = colorClass[colorN] + colorNO;
 
+        coloredDiv.push(new coloredItem(row,col,cclassName));
     }
-
+    var index=0;
+        var isi = setInterval(function () {
+            // alert("bug");
+            changeColor(coloredDiv[index].ro, coloredDiv[index].co, coloredDiv[index].clzName);
+            // alert(coloredDiv.length + "    index: " + index);
+            index++;
+            if(index===coloredDiv.length){
+                clearInterval(isi);
+            }
+        },80);
 }
 function changeColor(row,col,cclassName){
+    // alert(row + "   " + col + "  " + cclassName);
     var p = $(".row:nth-child(" + row + ")>.colorScreen:nth-child(" + col + ")");
-    p.removeClass('trans');
     p.addClass(cclassName);
 }
+
+function coloredItem(irow,icol,icclassName){
+    this.ro = irow;
+    this.co = icol;
+    this.clzName = icclassName;
+
+}
+
+function warpColor(){
+    for(x in coloredDiv){
+        var p = $(".row:nth-child(" + coloredDiv[x].ro + ")>.colorScreen:nth-child(" + coloredDiv[x].co + ")");
+        p.removeClass(coloredDiv[x].clzName);
+    }
+}
+
+$(function(){
+    choseCS();
+    $('#fullpage').fullpage({
+        onLeave: function () {
+            warpColor();
+            choseCS();
+        }
+    });
+});
